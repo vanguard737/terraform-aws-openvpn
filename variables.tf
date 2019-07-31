@@ -4,6 +4,7 @@ variable "name" {
 }
 
 variable "vpc_id" {
+  type        = string
   description = "ID of the VPC to use"
 }
 
@@ -16,29 +17,39 @@ variable "public_subnet_ids" {
 }
 
 variable "route_zone_id" {
+  type        = string
   description = "Route Zone ID"
 }
 
 variable "domain" {
-  description = "Public domain to assign to the openVPN host. With a value of 'example.com' The resulting value will be 'vpn.example.com"
+  type        = string
+  description = "Public domain to assign to the openVPN host. With a value of 'example.com', the resulting value will be 'vpn.example.com'."
 }
 
 variable "instance_type" {
-  description = "OPenVPN EC2 instance type"
+  type        = string
+  default     = 't2.micro'
+  description = "OpenVPN EC2 instance type"
 }
 
 variable "key_name" {
-  description = "Key Pair name"
-}
-
-variable "ebs_region" {
-  description = "Region for the EBS volume where we'll store credentials and certificates"
+  type        = string
+  description = "Key pair name"
 }
 
 variable "ebs_size" {
-  description = "EBS volume size. 1GB should be fine in most cases"
+  type        = number
+  default     = 1
+  description = "EBS volume size (GB). This volume will store OpenVPN credentials and certificates."
+}
+
+variable "ebs_region" {
+  type        = string
+  description = "Region for the EBS volume."
 }
 
 variable "ami" {
+  type        = string
   description = "AMI ID to use for the EC2 instance"
 }
+
